@@ -11,12 +11,12 @@
       formEl.addEventListener('submit', (e) => {
         e.preventDefault()
         const zip = zipInput.value
-        getWeather(zip)
+        const apiKey = '467355df4c808dd6134a3b64e9ace282'
+        getWeather(apiKey, zip)
       })
 
       // Functions 
-      function getWeather(zip) {
-        const apiKey = '467355df4c808dd6134a3b64e9ace282'
+      function getWeather(apiKey, zip) {
         const units = 'imperial'
         const path = `https://api.openweathermap.org/data/2.5/weather?zip=${zip}&appid=${apiKey}&units=${units}`
         fetch(path)
