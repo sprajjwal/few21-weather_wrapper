@@ -11,8 +11,10 @@ formEl.addEventListener('submit', (e) => {
     const zip = zipInput.value
     const apiKey = '467355df4c808dd6134a3b64e9ace282'
     console.log(tempEl)
-    getWeather(apiKey, zip)
-        .then(json=> {            
+    const unit = 'imperial'
+    getWeather(apiKey, zip, unit)
+        .then(json=> {  
+            console.log(json)          
             tempEl.innerHTML = json.main.temp
             descEl.innerHTML = json.weather[0].description
         })
@@ -20,9 +22,8 @@ formEl.addEventListener('submit', (e) => {
 })
 
 // Functions 
-async function getWeather(apiKey, zip) {
-    const units = 'imperial'
-    const path = `https://api.openweathermap.org/data/2.5/weather?zip=${zip}&appid=${apiKey}&units=${units}`
+async function getWeather(apiKey, zip, unit) {
+    const path = `https://api.openweathermap.org/data/2.5/weather?zip=${zip}&appid=${apiKey}&units=${unit}`
     const res = await fetch(path)
     const payload = await res.json()
     return payload
